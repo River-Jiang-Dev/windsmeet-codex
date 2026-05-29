@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "guides": "Guides",
+    "codex": "Codex",
+    "tools": "Tools",
+    "community": "Community"
+  },
+  "locale": {
+    "switch": "中文",
+    "current": "EN"
+  },
+  "guide": {
+    "readMore": "Read full entry →",
+    "backToGuides": "← Back to Guides",
+    "codexNote": "Codex Note"
+  }
+}

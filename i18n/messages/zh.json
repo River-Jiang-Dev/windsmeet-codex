@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "guides": "攻略",
+    "codex": "典籍",
+    "tools": "工具",
+    "community": "社区"
+  },
+  "locale": {
+    "switch": "English",
+    "current": "中文"
+  },
+  "guide": {
+    "readMore": "阅读完整条目 →",
+    "backToGuides": "← 返回攻略",
+    "codexNote": "典籍注脚"
+  }
+}
