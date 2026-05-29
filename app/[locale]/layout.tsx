@@ -6,6 +6,7 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
+import { Navigation } from '@/components/Navigation';
 import '../globals.css';
 
 const geistSans = Geist({
@@ -43,7 +44,10 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <Navigation locale={locale} />
+          <main className="mx-auto max-w-5xl px-4 py-8">
+            {children}
+          </main>
         </NextIntlClientProvider>
       </body>
     </html>
