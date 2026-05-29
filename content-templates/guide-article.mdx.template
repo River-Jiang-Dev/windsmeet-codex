@@ -1,0 +1,31 @@
+---
+title: "{{TITLE}}"
+description: "{{DESCRIPTION}}"
+category: "{{CATEGORY}}"
+publishedAt: "{{DATE}}"
+tags: [{{TAGS}}]
+codexLinks: []
+---
+
+## Overview
+
+{{OVERVIEW_NOTES}}
+
+<!-- Claude prompt: Expand the overview into a 2-paragraph introduction. -->
+<!-- Audience: English-speaking gamers 20-40, unfamiliar with Chinese history. -->
+<!-- Tone: Knowledgeable but not academic. Think "friend who knows a lot". -->
+<!-- Avoid words: delve, leverage, plethora, robust, tapestry, embark, journey (metaphor) -->
+
+## {{SECTION_1_TITLE}}
+
+{{SECTION_1_NOTES}}
+
+<!-- Claude prompt: Turn these notes into step-by-step guide content. -->
+
+{{CODEX_NOTES_PLACEHOLDER}}
+
+## {{SECTION_2_TITLE}}
+
+{{SECTION_2_NOTES}}
+
+<!-- Claude prompt: Continue in the same tone as above. -->

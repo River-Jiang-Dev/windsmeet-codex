@@ -1,0 +1,27 @@
+{
+  "_instructions": "Fill in all fields, then run: node scripts/new-article.js --type guide",
+  "title": "",
+  "description": "",
+  "category": "story-quests",
+  "slug": "",
+  "tags": [],
+  "overview_notes": "",
+  "sections": [
+    {
+      "title": "",
+      "notes": ""
+    },
+    {
+      "title": "",
+      "notes": ""
+    }
+  ],
+  "codex_connections": [
+    {
+      "section": "",
+      "slug": "",
+      "title": "",
+      "preview_note": ""
+    }
+  ]
+}

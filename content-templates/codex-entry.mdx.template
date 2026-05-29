@@ -1,0 +1,31 @@
+---
+title: "{{TITLE}}"
+description: "{{DESCRIPTION}}"
+category: "{{CATEGORY}}"
+publishedAt: "{{DATE}}"
+tags: [{{TAGS}}]
+---
+
+## Historical Background
+
+{{HISTORY_NOTES}}
+
+<!-- Claude prompt: Expand into 2-3 paragraphs of accessible history. -->
+<!-- Reference period: {{HISTORICAL_PERIOD}} -->
+<!-- Cite real sources if known: {{SOURCES}} -->
+<!-- Tone: Like a documentary narrator — vivid but factual. -->
+<!-- Audience: Western gamers who don't know Chinese history. -->
+
+## In the Game
+
+{{IN_GAME_NOTES}}
+
+<!-- Claude prompt: Bridge the history to the game's depiction in 1-2 paragraphs. -->
+<!-- Be specific about how the game uses, adapts, or changes the history. -->
+
+## Why It Matters
+
+{{SIGNIFICANCE_NOTES}}
+
+<!-- Claude prompt: 1-2 paragraphs on why this history makes the game richer. -->
+<!-- End with something that makes the player want to replay that section. -->

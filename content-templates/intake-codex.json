@@ -1,0 +1,13 @@
+{
+  "_instructions": "Fill in all fields, then run: node scripts/new-article.js --type codex",
+  "title": "",
+  "description": "",
+  "category": "martial",
+  "slug": "",
+  "tags": [],
+  "historical_period": "Five Dynasties (907-960 CE)",
+  "history_notes": "",
+  "in_game_notes": "",
+  "significance_notes": "",
+  "sources": []
+}
