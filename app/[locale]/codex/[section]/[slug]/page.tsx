@@ -3,6 +3,9 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import { getArticle, getAllSlugs } from '@/lib/mdx';
 import { ArticleLayout } from '@/components/ArticleLayout';
+import { CodexNote } from '@/components/CodexNote';
+
+const components = { CodexNote };
 
 interface Props {
   params: Promise<{ locale: string; section: string; slug: string }>;
@@ -31,7 +34,7 @@ export default async function CodexEntryPage({ params }: Props) {
         description={frontmatter.description}
         publishedAt={frontmatter.publishedAt}
       >
-        <MDXRemote source={content} />
+        <MDXRemote source={content} components={components} />
       </ArticleLayout>
     );
   } catch {
