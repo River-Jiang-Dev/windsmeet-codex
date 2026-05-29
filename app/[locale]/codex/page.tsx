@@ -1,5 +1,6 @@
 // app/[locale]/codex/page.tsx
 import Link from 'next/link';
+import { setRequestLocale } from 'next-intl/server';
 import { getAllArticles } from '@/lib/mdx';
 
 interface Props {
@@ -15,6 +16,7 @@ const SECTION_LABELS: Record<string, { en: string; zh: string }> = {
 
 export default async function CodexPage({ params }: Props) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const entries = getAllArticles(locale, 'codex');
 
   return (

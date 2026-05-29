@@ -1,6 +1,7 @@
 // app/[locale]/guides/[category]/[slug]/page.tsx
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 import { getArticle, getAllSlugs } from '@/lib/mdx';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodexNote } from '@/components/CodexNote';
@@ -26,6 +27,7 @@ export async function generateStaticParams() {
 
 export default async function GuidePage({ params }: Props) {
   const { locale, category, slug } = await params;
+  setRequestLocale(locale);
   try {
     const { frontmatter, content } = getArticle(locale, 'guides', category, slug);
     return (

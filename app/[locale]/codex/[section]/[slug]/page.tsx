@@ -1,6 +1,7 @@
 // app/[locale]/codex/[section]/[slug]/page.tsx
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
 import { getArticle, getAllSlugs } from '@/lib/mdx';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodexNote } from '@/components/CodexNote';
@@ -26,6 +27,7 @@ export async function generateStaticParams() {
 
 export default async function CodexEntryPage({ params }: Props) {
   const { locale, section, slug } = await params;
+  setRequestLocale(locale);
   try {
     const { frontmatter, content } = getArticle(locale, 'codex', section, slug);
     return (

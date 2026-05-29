@@ -1,5 +1,6 @@
 // app/[locale]/guides/page.tsx
 import Link from 'next/link';
+import { setRequestLocale } from 'next-intl/server';
 import { getAllArticles } from '@/lib/mdx';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 
 export default async function GuidesPage({ params }: Props) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const articles = getAllArticles(locale, 'guides');
 
   return (
