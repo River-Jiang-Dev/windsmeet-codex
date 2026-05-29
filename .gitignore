@@ -40,3 +40,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Content inbox — raw screenshots and quotes (large files, not committed)
+content-inbox/screenshots/
+content-inbox/quotes/
+# Keep notes and README
+!content-inbox/notes/
+!content-inbox/README.md
