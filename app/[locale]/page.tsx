@@ -1,5 +1,6 @@
 // app/[locale]/page.tsx
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export default function HomePage() {
   const t = useTranslations('nav');
@@ -10,8 +11,8 @@ export default function HomePage() {
         The complete guide for Where Winds Meet — with cultural deep-dives.
       </p>
       <nav className="mt-8 flex gap-4">
-        <a href="guides" className="text-blue-600 hover:underline">{t('guides')}</a>
-        <a href="codex" className="text-blue-600 hover:underline">{t('codex')}</a>
+        <Link href="/guides" className="text-blue-600 hover:underline">{t('guides')}</Link>
+        <Link href="/codex" className="text-blue-600 hover:underline">{t('codex')}</Link>
       </nav>
     </main>
   );
