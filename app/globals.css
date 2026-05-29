@@ -1,27 +1,223 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ── Design Tokens ─────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink:        #080706;
+  --ink-2:      #0f0d0a;
+  --ink-3:      #1a1610;
+  --parchment:  #f0e8d6;
+  --parchment-2:#c8b99a;
+  --parchment-3:#7a6b55;
+  --gold:       #c9a84c;
+  --gold-2:     #e8c97a;
+  --gold-3:     #8b6f2a;
+  --vermillion: #8b2e2e;
+  --border:     #2a2318;
+  --border-2:   #3d3020;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Custom Utilities ──────────────────────────────────── */
+@utility font-cinzel {
+  font-family: var(--font-cinzel), 'Cinzel', 'Times New Roman', serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@utility font-crimson {
+  font-family: var(--font-crimson), 'Crimson Pro', Georgia, serif;
+}
+
+@utility text-gold {
+  color: var(--gold);
+}
+
+@utility text-parchment {
+  color: var(--parchment);
+}
+
+@utility text-parchment-2 {
+  color: var(--parchment-2);
+}
+
+@utility bg-ink {
+  background-color: var(--ink);
+}
+
+@utility bg-ink-2 {
+  background-color: var(--ink-2);
+}
+
+@utility bg-ink-3 {
+  background-color: var(--ink-3);
+}
+
+@utility border-codex {
+  border-color: var(--border);
+}
+
+@utility border-gold {
+  border-color: var(--gold);
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+html {
+  background: var(--ink);
+  color: var(--parchment);
+  font-size: 18px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ink);
+  color: var(--parchment);
+  font-family: var(--font-crimson), Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Animations ────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slowDrift {
+  0%, 100% { transform: translateY(0px)   rotate(-1deg); }
+  50%       { transform: translateY(-12px) rotate(0deg);  }
+}
+
+@keyframes shimmerGold {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1;   }
+}
+
+.anim-fade-up   { animation: fadeUp  0.9s ease-out both; }
+.anim-fade-in   { animation: fadeIn  1.2s ease-out both; }
+.anim-drift     { animation: slowDrift 12s ease-in-out infinite; }
+.anim-delay-100 { animation-delay: 0.1s; }
+.anim-delay-200 { animation-delay: 0.2s; }
+.anim-delay-300 { animation-delay: 0.3s; }
+.anim-delay-400 { animation-delay: 0.4s; }
+.anim-delay-600 { animation-delay: 0.6s; }
+.anim-delay-800 { animation-delay: 0.8s; }
+
+/* ── Noise texture overlay ─────────────────────────────── */
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ── Interactive CSS components (Server-Component safe) ── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 32px;
+  background-color: var(--gold);
+  color: var(--ink);
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.btn-gold:hover { background-color: var(--gold-2); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 32px;
+  border: 1px solid var(--gold-3);
+  color: var(--parchment-2);
+  font-family: var(--font-cinzel), serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.card-guide {
+  padding: 2rem;
+  background-color: var(--ink-2);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--border-2);
+  transition: border-top-color 0.3s;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+.card-guide:hover { border-top-color: var(--gold-3); }
+
+.card-codex {
+  padding: 2rem;
+  background-color: var(--ink-2);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--border-2);
+  transition: border-top-color 0.3s;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+.card-codex:hover { border-top-color: var(--gold); }
+
+.link-muted {
+  color: var(--parchment-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.link-muted:hover { color: var(--parchment-2); }
+
+.link-gold {
+  color: var(--gold-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.link-gold:hover { color: var(--gold); }
+
+.pillar-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 2.5rem;
+  background-color: var(--ink);
+  border-color: var(--border);
+}
+.pillar-card .pillar-line {
+  height: 1px;
+  width: 3rem;
+  background-color: var(--gold-3);
+  margin: 1.25rem 0;
+  transition: width 0.5s;
+}
+.pillar-card:hover .pillar-line { width: 6rem; }
+.pillar-card .pillar-char {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  opacity: 0.04;
+  transition: opacity 0.7s;
+  pointer-events: none;
+  user-select: none;
+}
+.pillar-card:hover .pillar-char { opacity: 0.07; }
+
+/* ── Prose overrides for dark theme ────────────────────── */
+.prose {
+  --tw-prose-body:        var(--parchment-2);
+  --tw-prose-headings:    var(--parchment);
+  --tw-prose-links:       var(--gold);
+  --tw-prose-bold:        var(--parchment);
+  --tw-prose-quotes:      var(--parchment-2);
+  --tw-prose-quote-borders: var(--gold);
+  --tw-prose-hr:          var(--border);
+  --tw-prose-counters:    var(--parchment-3);
+  --tw-prose-bullets:     var(--gold-3);
 }

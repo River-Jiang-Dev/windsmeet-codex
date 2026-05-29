@@ -1,6 +1,6 @@
 // app/[locale]/layout.tsx
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Cinzel, Crimson_Pro } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -9,19 +9,24 @@ import type { Locale } from '@/i18n/routing';
 import { Navigation } from '@/components/Navigation';
 import '../globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const cinzel = Cinzel({
   subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  variable: '--font-cinzel',
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const crimsonPro = Crimson_Pro({
   subsets: ['latin'],
+  weight: ['300', '400', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-crimson',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: 'WindsMeet Codex',
-  description: 'The complete English guide for Where Winds Meet — with cultural deep-dives',
+  description: 'The cultural encyclopedia of Where Winds Meet — guides, lore, and Five Dynasties history for overseas players.',
 };
 
 export function generateStaticParams() {
@@ -41,12 +46,16 @@ export default async function LocaleLayout({
   }
   setRequestLocale(locale);
   const messages = await getMessages();
+
   return (
-    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+    <html
+      lang={locale}
+      className={`${cinzel.variable} ${crimsonPro.variable} h-full`}
+    >
+      <body className="flex min-h-full flex-col antialiased">
         <NextIntlClientProvider messages={messages}>
           <Navigation locale={locale} />
-          <main className="mx-auto max-w-5xl px-4 py-8">
+          <main className="flex-1 w-full">
             {children}
           </main>
         </NextIntlClientProvider>

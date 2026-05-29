@@ -10,17 +10,37 @@ interface NavigationProps {
 export function Navigation({ locale }: NavigationProps) {
   const t = useTranslations('nav');
   return (
-    <header className="border-b border-gray-200 bg-white">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-        <Link href={`/${locale}`} className="text-lg font-bold text-gray-900">
-          WindsMeet Codex
+    <header
+      style={{
+        borderBottom: '1px solid var(--border)',
+        backgroundColor: 'var(--ink)',
+      }}
+    >
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        {/* Brand */}
+        <Link
+          href={`/${locale}`}
+          className="font-cinzel tracking-[0.2em] transition-colors"
+          style={{ color: 'var(--gold)', fontSize: '0.875rem', fontWeight: 900 }}
+        >
+          WINDSMEET CODEX
         </Link>
-        <div className="flex items-center gap-6">
-          <Link href={`/${locale}/guides`} className="text-sm text-gray-600 hover:text-gray-900">
-            {t('guides')}
+
+        {/* Links */}
+        <div className="flex items-center gap-8">
+          <Link
+            href={`/${locale}/guides`}
+            className="font-cinzel text-xs tracking-widest transition-colors hover:text-gold"
+            style={{ color: 'var(--parchment-2)', letterSpacing: '0.15em' }}
+          >
+            {t('guides').toUpperCase()}
           </Link>
-          <Link href={`/${locale}/codex`} className="text-sm text-gray-600 hover:text-gray-900">
-            {t('codex')}
+          <Link
+            href={`/${locale}/codex`}
+            className="font-cinzel text-xs tracking-widest transition-colors hover:text-gold"
+            style={{ color: 'var(--parchment-2)', letterSpacing: '0.15em' }}
+          >
+            {t('codex').toUpperCase()}
           </Link>
           <LocaleSwitcher />
         </div>
