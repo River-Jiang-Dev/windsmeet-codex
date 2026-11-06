@@ -1,0 +1,8 @@
+# Workers static assets are edge-cached by default.
+# Never add Set-Cookie here: it makes the response uncacheable.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

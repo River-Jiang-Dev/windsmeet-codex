@@ -1,8 +1,9 @@
 // app/[locale]/guides/[category]/[slug]/page.tsx
+import type { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import { getArticle, getAllSlugs } from '@/lib/mdx';
+import { getArticle, getStaticArticleParams } from '@/lib/mdx';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodexNote } from '@/components/CodexNote';
 
@@ -12,34 +13,39 @@ interface Props {
   params: Promise<{ locale: string; category: string; slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const locales = ['en', 'zh'];
-  const allParams: { locale: string; category: string; slug: string }[] = [];
-  for (const locale of locales) {
-    const categories = ['story-quests', 'getting-started', 'character-builds', 'maps', 'exploration', 'dungeons'];
-    for (const category of categories) {
-      const slugs = getAllSlugs(locale, 'guides', category);
-      slugs.forEach((slug) => allParams.push({ locale, category, slug }));
-    }
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getStaticArticleParams('guides');
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, category, slug } = await params;
+  try {
+    const { frontmatter } = getArticle(locale, 'guides', category, slug);
+    return { title: frontmatter.title, description: frontmatter.description };
+  } catch {
+    return { title: 'WindsMeet Codex' };
   }
-  return allParams;
 }
 
 export default async function GuidePage({ params }: Props) {
   const { locale, category, slug } = await params;
   setRequestLocale(locale);
+  let article;
   try {
-    const { frontmatter, content } = getArticle(locale, 'guides', category, slug);
-    return (
-      <ArticleLayout
-        title={frontmatter.title}
-        description={frontmatter.description}
-        publishedAt={frontmatter.publishedAt}
-      >
-        <MDXRemote source={content} components={components} />
-      </ArticleLayout>
-    );
+    article = getArticle(locale, 'guides', category, slug);
   } catch {
     notFound();
   }
+  const { frontmatter, content } = article;
+  return (
+    <ArticleLayout
+      title={frontmatter.title}
+      description={frontmatter.description}
+      publishedAt={frontmatter.publishedAt}
+    >
+      <MDXRemote source={content} components={components} />
+    </ArticleLayout>
+  );
 }

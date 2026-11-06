@@ -10,20 +10,28 @@ interface CodexNoteProps {
 export function CodexNote({ title, preview, section, slug, locale = 'en' }: CodexNoteProps) {
   const href = `/${locale}/codex/${section}/${slug}`;
   return (
-    <aside className="my-6 rounded-lg border border-amber-200 bg-amber-50 p-4">
+    <aside
+      className="not-prose my-8"
+      style={{
+        border: '1px solid var(--border-2)',
+        background: 'var(--ink-3)',
+        padding: '1.25rem 1.5rem',
+      }}
+    >
       <div className="mb-2 flex items-center gap-2">
-        <span className="text-lg">📖</span>
-        <span className="text-xs font-semibold uppercase tracking-wide text-amber-700">
-          Codex Note
+        <span aria-hidden>📖</span>
+        <span className="font-cinzel text-xs tracking-widest" style={{ color: 'var(--gold-3)' }}>
+          CODEX NOTE
         </span>
       </div>
-      <p className="mb-1 font-semibold text-gray-900">{title}</p>
-      <p className="mb-3 text-sm text-gray-600">{preview}</p>
-      <a
-        href={href}
-        className="text-sm font-medium text-amber-700 hover:text-amber-900 hover:underline"
-      >
-        Read full entry →
+      <p className="font-crimson mb-1" style={{ color: 'var(--parchment)', fontWeight: 600 }}>
+        {title}
+      </p>
+      <p className="font-crimson mb-3 text-base" style={{ color: 'var(--parchment-3)' }}>
+        {preview}
+      </p>
+      <a href={href} className="font-cinzel text-xs tracking-widest link-gold">
+        {locale === 'zh' ? '阅读完整条目 →' : 'Read full entry →'}
       </a>
     </aside>
   );

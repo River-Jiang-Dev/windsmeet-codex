@@ -17,6 +17,10 @@
 /.next/
 /out/
 
+# Cloudflare / SWC build cache
+/.wrangler/
+/.swc-native-cache/
+
 # production
 /build
 

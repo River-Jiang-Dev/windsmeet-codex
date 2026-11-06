@@ -1,33 +1,43 @@
 // app/[locale]/layout.tsx
 import type { Metadata } from 'next';
-import { Cinzel, Crimson_Pro } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import type { Locale } from '@/i18n/routing';
+import { SITE_URL } from '@/lib/site';
 import { Navigation } from '@/components/Navigation';
+import '@fontsource/cinzel/latin-400.css';
+import '@fontsource/cinzel/latin-700.css';
+import '@fontsource/cinzel/latin-900.css';
+import '@fontsource/crimson-pro/latin-300.css';
+import '@fontsource/crimson-pro/latin-400.css';
+import '@fontsource/crimson-pro/latin-600.css';
+import '@fontsource/crimson-pro/latin-300-italic.css';
+import '@fontsource/crimson-pro/latin-400-italic.css';
+import '@fontsource/crimson-pro/latin-600-italic.css';
 import '../globals.css';
 
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  weight: ['400', '700', '900'],
-  variable: '--font-cinzel',
-  display: 'swap',
-});
+export const dynamic = 'force-static';
 
-const crimsonPro = Crimson_Pro({
-  subsets: ['latin'],
-  weight: ['300', '400', '600'],
-  style: ['normal', 'italic'],
-  variable: '--font-crimson',
-  display: 'swap',
-});
-
-export const metadata: Metadata = {
-  title: 'WindsMeet Codex',
-  description: 'The cultural encyclopedia of Where Winds Meet — guides, lore, and Five Dynasties history for overseas players.',
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isZh = locale === 'zh';
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: 'WindsMeet Codex',
+      template: '%s · WindsMeet Codex',
+    },
+    description: isZh
+      ? '燕云十六声的攻略与文化典籍。'
+      : 'The cultural encyclopedia of Where Winds Meet — guides, lore, and Five Dynasties history.',
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -48,10 +58,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html
-      lang={locale}
-      className={`${cinzel.variable} ${crimsonPro.variable} h-full`}
-    >
+    <html lang={locale} className="h-full">
       <body className="flex min-h-full flex-col antialiased">
         <NextIntlClientProvider messages={messages}>
           <Navigation locale={locale} />

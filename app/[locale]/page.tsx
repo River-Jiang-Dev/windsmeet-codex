@@ -30,7 +30,7 @@ export default async function HomePage({ params }: Props) {
               fontSize: 'clamp(220px, 38vw, 480px)',
               color: 'var(--gold)',
               opacity: 0.03,
-              fontFamily: '"Noto Serif SC","Noto Serif TC",serif',
+              fontFamily: 'var(--font-song)',
               fontWeight: 300,
             }}
           >
@@ -42,7 +42,7 @@ export default async function HomePage({ params }: Props) {
               fontSize: 'clamp(140px, 25vw, 340px)',
               color: 'var(--gold)',
               opacity: 0.025,
-              fontFamily: '"Noto Serif SC","Noto Serif TC",serif',
+              fontFamily: 'var(--font-song)',
               fontWeight: 300,
               animationDelay: '-6s',
             }}
@@ -159,7 +159,7 @@ export default async function HomePage({ params }: Props) {
                   className="pillar-char font-crimson"
                   style={{
                     fontSize: '7rem',
-                    fontFamily: '"Noto Serif SC",serif',
+                    fontFamily: 'var(--font-song)',
                     color: 'var(--gold)',
                     fontWeight: 300,
                     lineHeight: 1,
@@ -176,7 +176,7 @@ export default async function HomePage({ params }: Props) {
                 <h3 className="font-cinzel mb-1 text-xl tracking-widest" style={{ color: 'var(--parchment)', fontWeight: 700 }}>
                   {p.en}
                 </h3>
-                <p className="mb-1 text-sm" style={{ color: 'var(--parchment-3)', fontFamily: '"Noto Serif SC",serif' }}>
+                <p className="mb-1 text-sm" style={{ color: 'var(--parchment-3)', fontFamily: 'var(--font-song)' }}>
                   {p.zh}
                 </p>
 

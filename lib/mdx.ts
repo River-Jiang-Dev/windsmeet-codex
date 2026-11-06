@@ -59,3 +59,24 @@ export function getAllArticles(locale: string, type: 'guides' | 'codex'): Articl
     return slugs.map((slug) => getArticle(locale, type, category, slug));
   });
 }
+
+export function getStaticArticleParams(
+  type: 'guides' | 'codex'
+): Array<{ locale: string; category: string; slug: string }> {
+  if (!fs.existsSync(CONTENT_DIR)) return [];
+  const params: Array<{ locale: string; category: string; slug: string }> = [];
+  for (const locale of fs.readdirSync(CONTENT_DIR)) {
+    const localeDir = path.join(CONTENT_DIR, locale);
+    if (!fs.statSync(localeDir).isDirectory()) continue;
+    const typeDir = path.join(localeDir, type);
+    if (!fs.existsSync(typeDir)) continue;
+    for (const category of fs.readdirSync(typeDir)) {
+      const categoryDir = path.join(typeDir, category);
+      if (!fs.statSync(categoryDir).isDirectory()) continue;
+      for (const slug of getAllSlugs(locale, type, category)) {
+        params.push({ locale, category, slug });
+      }
+    }
+  }
+  return params;
+}

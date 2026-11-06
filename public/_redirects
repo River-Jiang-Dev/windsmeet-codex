@@ -1,1 +1,3 @@
-/  /en  302
+# Default locale. Static hosting does not run proxy.ts, so this is the only redirect.
+# A 302 from the asset layer carries no Set-Cookie.
+/ /en 302
