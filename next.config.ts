@@ -5,9 +5,12 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 const nextConfig: NextConfig = {
-  // Static export only on Cloudflare Pages (CF_PAGES=1 is set automatically by Cloudflare build env).
-  // Local dev keeps the full server so proxy.ts runs and / redirects to /en.
-  output: process.env.CF_PAGES ? 'export' : undefined,
+  // Pure static site: MDX is read at build time. Workers serves the `out/`
+  // directory as assets, so requests do not run a Worker (no CPU, no Set-Cookie).
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default withNextIntl(nextConfig);

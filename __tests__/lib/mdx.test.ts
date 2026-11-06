@@ -1,4 +1,4 @@
-import { getArticle, getAllSlugs } from '@/lib/mdx';
+import { getArticle, getAllSlugs, getStaticArticleParams } from '@/lib/mdx';
 
 describe('getArticle', () => {
   it('returns frontmatter and content for a valid article', () => {
@@ -23,5 +23,25 @@ describe('getAllSlugs', () => {
   it('returns empty array for nonexistent category', () => {
     const slugs = getAllSlugs('en', 'guides', 'nonexistent-category');
     expect(slugs).toEqual([]);
+  });
+});
+
+describe('getStaticArticleParams', () => {
+  it('includes the published English and Chinese articles', () => {
+    const guides = getStaticArticleParams('guides');
+    expect(guides).toEqual(
+      expect.arrayContaining([
+        { locale: 'en', category: 'story-quests', slug: 'introduction' },
+        { locale: 'zh', category: 'story-quests', slug: 'introduction' },
+      ])
+    );
+
+    const codex = getStaticArticleParams('codex');
+    expect(codex).toEqual(
+      expect.arrayContaining([
+        { locale: 'en', category: 'martial', slug: 'jade-blade' },
+        { locale: 'zh', category: 'martial', slug: 'jade-blade' },
+      ])
+    );
   });
 });

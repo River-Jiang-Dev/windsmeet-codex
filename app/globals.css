@@ -3,6 +3,9 @@
 
 /* ── Design Tokens ─────────────────────────────────────── */
 :root {
+  --font-cinzel: "Cinzel", "Times New Roman", serif;
+  --font-crimson: "Crimson Pro", Georgia, serif;
+  --font-song: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
   --ink:        #080706;
   --ink-2:      #0f0d0a;
   --ink-3:      #1a1610;

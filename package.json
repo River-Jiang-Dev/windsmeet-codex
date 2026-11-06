@@ -4,14 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build --webpack",
-    "start": "next start",
+    "build": "node scripts/build-static.mjs",
+    "preview": "wrangler dev",
+    "start": "wrangler dev",
     "lint": "eslint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "validate:content": "node scripts/validate-content.js"
+    "validate:content": "node scripts/validate-content.js",
+    "deploy": "wrangler deploy"
+  },
+  "allowScripts": {
+    "@swc/core": true,
+    "@parcel/watcher": true,
+    "sharp": true,
+    "unrs-resolver": true,
+    "fsevents": true
   },
   "dependencies": {
+    "@fontsource/cinzel": "^5.2.8",
+    "@fontsource/crimson-pro": "^5.2.8",
     "gray-matter": "^4.0.3",
     "next": "16.2.6",
     "next-intl": "^4.13.0",
@@ -35,6 +46,7 @@
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.158.0"
   }
 }
